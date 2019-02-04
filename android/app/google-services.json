@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1055949500531",
+    "firebase_url": "https://lstat-8e0e8.firebaseio.com",
+    "project_id": "lstat-8e0e8",
+    "storage_bucket": "lstat-8e0e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055949500531:android:1e7cb8242a29ac8f",
+        "android_client_info": {
+          "package_name": "com.example.lstatflutteralphav00"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055949500531-c0d8n595p93hfgk7k18n6vs4fmrfk8eu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIs2YnBCzdnjaLLK0qZ1m4pF6Gx8T27Qo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

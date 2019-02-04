@@ -1,0 +1,25 @@
+code snippets
+
+children: <Widget>[
+                      new Text("Name: " + (new_data[index]['NAME']).toString()),
+                      new Text("Team: " + (new_data[index]['TEAM']).toString()),
+                      new Text("Position: " + new_data[index]['POSITION']),
+                      new Text("KDA: " + (new_data[index]['KDA (RATIO)']).toString()),
+                      new Text("Kills: " + (new_data[index]['KILLS (TOTAL)']).toString()),
+                      new Text("Deaths: " + (new_data[index]['DEATHS (TOTAL)']).toString()),
+                      new Text("Assists: " + (new_data[index]['ASSISTS (TOTAL)']).toString()),
+                      new Text("Kill Participation: " + new_data[index]['KILL PARTICIPATION']),
+                      new Text("CS per minute: " + (new_data[index]['CS (PER MINUTE)']).toString()),
+                      new Text("Total CS: " + new_data[index]['CS (TOTAL)']),
+
+                    ],
+
+
+
+
+Designing app based off JSON file
+App
+-Main page
+-Tab bar with Players, teams, and rankings
+-Player screens
+-Team Screens

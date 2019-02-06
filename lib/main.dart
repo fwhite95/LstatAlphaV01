@@ -3,8 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'LStatHomePage.dart';
 import 'tabBarScreen.dart';
+import 'buildingFirebaseDB.dart';
 
-void main() => runApp(TabScreen());
+void main() => runApp(BuildDB());
 
 
 class MyApp extends StatelessWidget {

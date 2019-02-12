@@ -1,36 +1,67 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'StatsMainScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'HomeScreen.dart';
 
+//TODO player tab
+//Includes build player list
+// Tile info
+//On click to go to player info
 
-class TabScreen extends StatelessWidget{
+//New player list view using Firestore
+
+class BuildPlayerListFire extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            appBar: AppBar(
-              bottom: TabBar(
-                  tabs: [
-                    Tab(icon: Text("Players")),
-                    Tab(icon: Text("Teams")),
-                    Tab(icon: Text("Rankings")),
-                  ]),
-              title: Text("LStat"),
-            ),
-            body: TabBarView(
-                children: [
-                  _buildPlayerList(context),
-                  _buildTeamList(context),
-                  _buildRankingList(context)
-                ]),
-          )),
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection('PlayerInfoTest').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting: return new Text('Loading...');
+          default:
+            return new ListView(
+              children: snapshot.data.documents.map((DocumentSnapshot document) {
+                return new Container(
+                    decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                    bottom: BorderSide(width: 1.0, color: Colors.black),
+                left: BorderSide(width: 1.0, color: Colors.black),
+                right: BorderSide(width: 1.0, color: Colors.black))),
+                child: ListTile(
+                  leading: Container(
+                      child: Image.asset('resources/images/impact.png',
+                        fit: BoxFit.contain,
+                        height: 90.0,
+                        width: 90.0,)
+                  ),
+                  title: new Text((document['Name']), style: TextStyle(
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center),
+                  subtitle: new Text(("Team: " + document['Team'] +
+                      "\tPosition: " + document['Position']),
+                      textAlign: TextAlign.center),
+                  onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreenApp()));},
+                )
+                    );
+                }).toList(),
+            );
+        }
+      },
     );
   }
 }
 
 
-Widget _buildPlayerList(BuildContext context){
+
+
+
+
+//Old Player List view Using JSON file
+Widget buildPlayerListView(BuildContext context){
 
   return Scaffold(
     body: new Container(
@@ -65,8 +96,8 @@ Widget _buildPlayerList(BuildContext context){
                       trailing: Text("998"),
                       onTap: (){
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => _buildPlayerPage(context, playerText(new_data[index]['NAME']),
+                            context,
+                            MaterialPageRoute(builder: (context) => _buildPlayerPage(context, playerText(new_data[index]['NAME']),
                               Text(new_data[index]['TEAM']),
                               Text(new_data[index]['POSITION']),
                               playerText((new_data[index]['KDA (RATIO)']).toString()),
@@ -76,7 +107,7 @@ Widget _buildPlayerList(BuildContext context){
                               playerText((new_data[index]['KILL PARTICIPATION']).toString()),
                               playerText((new_data[index]['CS (PER MINUTE)']).toString()),
                               playerText((new_data[index]['CS (TOTAL)']).toString()),
-                        ))
+                            ))
                         );
                       },
                     ),
@@ -88,77 +119,10 @@ Widget _buildPlayerList(BuildContext context){
 
 }
 
-//*********************************************************************************
-//******************************************************************************
-
-Widget _buildTeamList(BuildContext context){
-
-List<Widget> teams = new List();
-teams.add(new Text("100 Thieves",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Cloud9",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Clutch Gaming",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Counter Logic Gaming",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Echo Fox",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("FlyQuest",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Golden Guardians",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Optic Gaming",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Team Liquid",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-teams.add(new Text("Team Solomid",
-  style: TextStyle(
-      fontSize: 20.0, fontWeight: FontWeight.bold),
-  textAlign: TextAlign.center,));
-
-return ListView.builder(itemCount: teams.length,
-    itemBuilder: (context, index){
-  return new Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-              bottom: BorderSide(width: 1.0, color: Colors.black),
-              left: BorderSide(width: 1.0, color: Colors.black),
-              right: BorderSide(width: 1.0, color: Colors.black))),
-      child: ListTile(
-        leading: Container(
-            child: Image.asset('Image/cloudnine.png',
-              height: 50.0,
-              width: 50.0,
-              fit: BoxFit.cover,
-            )
-        ),
-        title: teams[index],
-        trailing: Text("3"),
-  )
-      );
-    });
-
-}
+//TODO player info
+//Image
+//Stats
+//Build player tile function
 
 Widget _buildPlayerPage(BuildContext context, Widget name,
     Widget position,
@@ -247,10 +211,4 @@ Text playerText(String data){
     style: TextStyle(
         fontSize: 20.0, fontWeight: FontWeight.bold),
     textAlign: TextAlign.center,);
-}
-
-//TODO Ranking List
-
-Widget _buildRankingList(BuildContext context){
-
 }

@@ -10,11 +10,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:lstat_flutter_alphav00/main.dart';
 import 'package:lstat_flutter_alphav00/UI/StatsMainScreen.dart';
+import 'package:lstat_flutter_alphav00/UI/HomeScreen.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(StatsMainScreen());
+    await tester.pumpWidget(HomeScreenApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

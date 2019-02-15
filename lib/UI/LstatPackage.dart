@@ -74,5 +74,23 @@ class FirestoreTitles {
   String getCspm(){return this.cspm;}
   String getCst(){return this.cst;}
 
+}
+
+class TeamNames {
+
+  static final String hundredT = '100 Thieves';
+  static final String cNine = 'Cloud9';
+  static final String cg = 'Clutch Gaming';
+  static final String clg = 'Counter Logic Gaming';
+  static final String ef = 'Echo Fox';
+  static final String fq = 'FlyQuest';
+  static final String ggs = 'Golden Guardians';
+  static final String opg = 'Optic Gaming';
+  static final String tl = 'Team Liquid';
+  static final String tsm = 'Team Solomid';
+
+  static List<String> teamNames = [hundredT, cNine,
+  cg, clg, ef, fq, ggs, opg, tl, tsm];
+
 
 }

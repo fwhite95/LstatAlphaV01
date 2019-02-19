@@ -48,30 +48,4 @@ class StatsMainScreenFire extends StatelessWidget {
   }
 }
 
-/*
-//Original Stats main screen
-class StatsMainScreen extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-            appBar: AppBar(
-              bottom: TabBar(
-                  tabs: [
-                    Tab(icon: Text("Players")),
-                    Tab(icon: Text("Teams")),
-                    Tab(icon: Text("Matches")),
-                  ]),
-              title: Text("LStat"),
-            ),
-            body: TabBarView(
-                children: [
-                  buildPlayerListView(context),
-                ]),
-          )),
-    );
-  }
-}
-*/
+

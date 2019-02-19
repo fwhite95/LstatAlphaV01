@@ -1,6 +1,14 @@
 # lstat_flutter_alphav00
 
-Pre alpha version of lstat. Proper utilization of oop. Using data structures and locally stored files to create stats
+Alpha version of LStat app
+
+
+
+-update 02/19/19
+-Intention of app is to gather stats from League of Legends LCS teams
+-Store data in Firestore backend and display to user
+-Still needs completion on functionality and updates to UI
+
 
 ## Getting Started
 

@@ -3,6 +3,7 @@
 Alpha version of LStat app
 
 
+![Drawer Image](https://github.com/fwhite95/LstatAlphaV01/blob/master/drawPic.JPG)
 
 -update 02/19/19
 -Intention of app is to gather stats from League of Legends LCS teams
